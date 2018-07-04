@@ -1,0 +1,15 @@
+
+- hosts: all
+  remote_user: ubuntu
+  tasks:
+    - name: Make sure openjdk-8-jdk present
+      become: yes
+      apt:
+        name: openjdk-8-jdk
+        update_cache: yes
+   
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      unarchive:
+        src: http://www.mirrorservice.org/sites/ftp.apache.org/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
+        dest: /home/ubuntu/
+        remote_src: yes
